@@ -1,0 +1,137 @@
+---
+import "../styles/global.css"
+---
+
+<div class="container">
+    <div class="inputs">
+        <input type="text" class="primary-color input-color" placeholder="Primary Color">
+        <input type="text" class="secondary-color input-color" placeholder="Secondary Color">
+        <input type="text" class="accent-color input-color" placeholder="Accent Color">
+        <input type="text" class="neutral-color input-color" placeholder="Neutral Color">
+    </div>
+</div>
+
+<style>
+.container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px 0 0 0;
+}
+
+.inputs {
+    display: flex;
+    overflow-x: auto; /* permite scroll horizontal */
+    gap: 15px;
+    padding: 15px;
+    background-color: #0009;
+    border-radius: 10px;
+    max-width: 90%;
+    box-sizing: border-box;
+    scrollbar-width: thin; /* opcional, para Firefox */
+}
+
+.input-color {
+    flex: 0 0 150px; /* ancho fijo para que no crezcan automáticamente */
+    min-width: 150px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Opcional: quitar scrollbar en WebKit y darle un estilo discreto */
+.inputs::-webkit-scrollbar {
+    height: 6px;
+}
+.inputs::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+/* Sombras de color */
+.primary-color { box-shadow: 0 0 5px 10px var(--primary-color); }
+.secondary-color { box-shadow: 0 0 5px 10px var(--secondary-color); }
+.accent-color { box-shadow: 0 0 5px 10px var(--accent-color); }
+.neutral-color { box-shadow: 0 0 5px 10px var(--neutral-color); }
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .inputs {
+        gap: 15px;
+        padding: 15px;
+    }
+    .input-color {
+        padding: 8px 15px;
+        flex: 1 1 120px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputs {
+        flex-direction: row; /* horizontal */
+        overflow-x: auto;    /* scroll si no caben */
+        padding: 10px;
+    }
+    .input-color {
+        flex: 0 0 120px; /* ancho fijo más pequeño en móviles */
+        min-width: 120px;
+        height: 30px;
+        font-size: 14px;
+    }
+}
+
+</style>
+
+
+<script lang="ts">
+const root = document.documentElement;
+
+const $primary = document.querySelector(".primary-color") ;
+const $secondary = document.querySelector(".secondary-color");
+const $accent = document.querySelector(".accent-color");
+const $neutral = document.querySelector(".neutral-color");
+
+// Función para aplicar un color y guardarlo en localStorage
+function setColor(varName, value) {
+    root.style.setProperty(varName, value);
+    localStorage.setItem(varName, value);
+}
+
+// Al cargar la página, leer colores guardados y aplicarlos
+document.addEventListener("DOMContentLoaded", () => {
+    const savedPrimary = localStorage.getItem("--primary-color");
+    const savedSecondary = localStorage.getItem("--secondary-color");
+    const savedAccent = localStorage.getItem("--accent-color");
+    const savedNeutral = localStorage.getItem("--neutral-color");
+
+    if (savedPrimary) {
+        root.style.setProperty("--primary-color", savedPrimary);
+        $primary.value = savedPrimary;
+    }
+    if (savedSecondary) {
+        root.style.setProperty("--secondary-color", savedSecondary);
+        $secondary.value = savedSecondary;
+    }
+    if (savedAccent) {
+        root.style.setProperty("--accent-color", savedAccent);
+        $accent.value = savedAccent;
+    }
+    if (savedNeutral) {
+        root.style.setProperty("--neutral-color", savedNeutral);
+        $neutral.value = savedNeutral;
+    }
+});
+
+// Eventos de input
+$primary.addEventListener("input", () => setColor("--primary-color", $primary.value));
+$secondary.addEventListener("input", () => setColor("--secondary-color", $secondary.value));
+$accent.addEventListener("input", () => setColor("--accent-color", $accent.value));
+$neutral.addEventListener("input", () => setColor("--neutral-color", $neutral.value));
+</script>

@@ -1,0 +1,186 @@
+---
+import Layout from "../layout/layout.astro";
+---
+
+<Layout title="Landing View">
+    <div class="container">
+        <header>
+            <div class="logo">Your logo</div>
+            <ul>
+                <li>Home</li>
+                <li>Products</li>
+                <li>Contact</li>
+                <li>FAQ's</li>
+                <li>More...</li>
+            </ul>
+        </header>
+        <main>
+            <h1>Your Title Here</h1>
+            <div class="buttons">
+                <button>Action 1</button>
+                <button>Action 2</button>
+            </div>
+        </main>
+        <section class="description">
+            <div class="info">
+                <h2 class="sub-title">Subtitle 1</h2>
+                <p class="info-1">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque omnis animi quae aliquam sapiente nemo ullam eius cum magni praesentium sed modi, voluptate dolor optio incidunt exercitationem doloribus tempora enim!
+                </p>
+                <p class="info-2">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quae nemo provident. Porro, recusandae tempora modi officia ratione rerum dolorum dolore, doloribus magnam veritatis sit distinctio deserunt repellat praesentium laborum!
+                </p>
+            </div>
+            <div class="img"></div>
+        </section>
+
+        <section class="frecuent-q">
+            <h2>FAQ</h2>
+            <div class="items">
+            <div class="item">Question 1</div>
+            <div class="item">Question 2</div>
+            <div class="item">Question 3</div>
+            <div class="item">Question 4</div>
+            <div class="item">Question 5</div>
+            <div class="item">Question 6</div>
+            <div class="item">Question 7</div>
+            <div class="item">Question 8</div>
+            </div>
+        </section>
+    </div>
+</Layout>
+
+<style>
+    .container{
+        background-color: var(--neutral-color);
+        height: 100vh;
+        color: var(--primary-color);
+    }
+
+    .logo{
+        font-weight: bold;
+        font-size: 2rem;
+        color: var(--accent-color);
+    }
+
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 40px;
+        border-bottom: 3px solid var(--primary-color);
+        background-color: rgba(0, 0, 0, .1);
+        backdrop-filter: blur(5px);
+
+    }
+    ul{
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        font-weight: bold;
+    }
+    li:hover{
+        color: var(--accent-color);
+    }
+
+    main{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    button{
+        padding: 8px 30px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    button:first-child{
+        background-color: var(--secondary-color);
+        color: var(--accent-color);
+    }
+    button:nth-child(2){
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+    }
+
+
+    .description{
+        background-color: var(--secondary-color);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+        padding: 2rem;
+    }
+
+    .description > .info{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px;
+        color: var(--neutral-color);
+        width: 70%;
+    }
+
+    .description .sub-title{
+        color: var(--accent-color);
+        font-size: 2rem;
+    }
+
+    .description .img{
+        width: 250px;
+        height: 250px;
+        background-color: var(--accent-color);
+    }
+
+    .frecuent-q{
+        margin: 30px 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .frecuent-q > h2{
+        font-size: 2rem;
+    }
+
+    .items{
+        padding: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 30px;
+        width: 100%;
+    }
+
+    .items > .item{
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        flex-basis: 300px;
+        background-color: var(--accent-color);
+        border: 2px solid var(--accent-color);
+        transition: .2s ease;
+    }
+
+    .items > .item:hover{
+        font-weight: bold;
+        background-color: transparent;
+        border: 2px solid var(--primary-color);
+    }
+
+</style>
